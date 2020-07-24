@@ -52,8 +52,7 @@ public class BookServiceImpl
     @Override
     public void delete(long id)
     {
-        if (bookrepos.findById(id)
-                .isPresent())
+        if (bookrepos.findById(id).isPresent())
         {
             bookrepos.deleteById(id);
         } else
@@ -70,8 +69,7 @@ public class BookServiceImpl
 
         if (book.getBookid() != 0)
         {
-            bookrepos.findById(book.getBookid())
-                    .orElseThrow(() -> new ResourceNotFoundException("Book id " + book.getBookid() + " not found!"));
+            bookrepos.findById(book.getBookid()).orElseThrow(() -> new ResourceNotFoundException("Book id " + book.getBookid() + " not found!"));
         }
 
         newBook.setTitle(book.getTitle());
@@ -89,8 +87,7 @@ public class BookServiceImpl
         {
             Author addAuthor = authorrepos.findById(w.getAuthor()
                                                             .getAuthorid())
-                    .orElseThrow(() -> new ResourceNotFoundException("Author Id " + w.getAuthor()
-                            .getAuthorid() + " Not Found!"));
+                    .orElseThrow(() -> new ResourceNotFoundException("Author Id " + w.getAuthor().getAuthorid() + " Not Found!"));
             newBook.getWrotes()
                     .add(new Wrote(addAuthor, newBook));
         }
@@ -134,8 +131,7 @@ public class BookServiceImpl
             {
                 Author addAuthor = authorrepos.findById(w.getAuthor()
                                                                 .getAuthorid())
-                        .orElseThrow(() -> new ResourceNotFoundException("Author Id " + w.getAuthor()
-                                .getAuthorid() + " Not Found!"));
+                        .orElseThrow(() -> new ResourceNotFoundException("Author Id " + w.getAuthor().getAuthorid() + " Not Found!"));
                 currentBook.getWrotes()
                         .add(new Wrote(addAuthor, currentBook));
             }
